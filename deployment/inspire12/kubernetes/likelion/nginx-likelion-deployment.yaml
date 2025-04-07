@@ -1,32 +1,33 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1              # Kubernetes API 버전 (Deployment는 apps/v1)
+kind: Deployment                 # 리소스 종류 (Deployment)
 metadata:
-  name: nginx-likelion
+  name: nginx-likelion           # Deployment 이름
   labels:
-    app: nginx-likelion
+    app: nginx-likelion          # 리소스를 구분하는 라벨 (Service와 연결될 때 사용)
 spec:
-  replicas: 1
+  replicas: 1                    # 컨테이너(팟)의 개수 (복제본)
   selector:
     matchLabels:
-      app: nginx-likelion
-  template:
+      app: nginx-likelion        # 관리할 Pod 라벨 선택 기준
+  template:                      # Pod(컨테이너)의 정의 시작
     metadata:
       labels:
-        app: nginx-likelion
+        app: nginx-likelion      # Pod 라벨 지정 (selector와 연결됨)
     spec:
-      containers:
-        - name: nginx-likelion
-          image: nginx:latest
+      containers:                # 실제 컨테이너 정의
+        - name: nginx-likelion   # 컨테이너 이름
+          image: nginx:latest    # 사용할 이미지 (최신 nginx)
           ports:
-            - containerPort: 80
-          volumeMounts:
+            - containerPort: 80  # 컨테이너가 노출할 포트 (nginx는 기본 80번)
+          volumeMounts:          # 설정 파일 연결
             - name: nginx-config
               mountPath: /etc/nginx/conf.d/default.conf
-              subPath: default.conf
-      volumes:
+              subPath: default.conf  # ConfigMap에서 사용할 특정 파일 지정
+      volumes:                   # 실제 볼륨 연결 (ConfigMap으로)
         - name: nginx-config
           configMap:
             name: nginx-config
+
 ---
 apiVersion: v1
 kind: Service
