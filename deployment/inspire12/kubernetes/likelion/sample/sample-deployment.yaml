@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: likelion-backend-1
+spec:
+  replicas: 3                 # 복제 Pod 개수
+  strategy:                   # 업데이트 전략
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1       # 동시에 중단 가능한 Pod 최대 수
+      maxSurge: 1             # 업데이트 과정에서 추가로 생성 가능한 Pod 최대 수
+  template:
+    spec:
+      containers:
+        - name: backend
+          image: likelion-backend:latest
+          ports:
+            - containerPort: 8080
+          resources:            # 리소스 제한 (메모리/CPU)
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          env:                  # 환경 변수 설정
+            - name: ENV
+              value: prod
+  selector:
+    matchLabels:
+      app: nginx-likelion        # 관리할 Pod 라벨 선택 기준

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: likelion-deployment
+spec:
+  replicas: # TODO 1
+  selector:
+    matchLabels:
+      app: likelion
+  template:
+    metadata:
+      labels:
+        app: likelion
+    spec:
+      containers:
+        - name: likelion-backend
+          image: # TODO
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
