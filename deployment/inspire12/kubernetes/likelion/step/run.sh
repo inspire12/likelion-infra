@@ -1,3 +1,7 @@
+# minikube
+eval $(minikube docker-env)
+# docker image 생성 likelion-backend:latest
+docker build -t likelion-backend:latest .
 # namespace
 kubectl create ns likelion
 kubectl config set-context --current --namespace=likelion
