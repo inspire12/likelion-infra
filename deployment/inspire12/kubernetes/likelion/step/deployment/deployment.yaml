@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: likelion-deployment
 spec:
-  replicas: # TODO 1
+  replicas: 1 # TODO 1
   selector:
     matchLabels:
       app: likelion
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: likelion-backend
-          image: # TODO
-          imagePullPolicy: # TODO IfNotPresent
+          image: likelion-backend:latest # TODO
+          imagePullPolicy: IfNotPresent # TODO IfNotPresent
           ports:
             - containerPort: 8082
