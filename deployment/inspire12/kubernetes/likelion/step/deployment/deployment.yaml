@@ -15,6 +15,6 @@ spec:
       containers:
         - name: likelion-backend
           image: # TODO
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: # TODO IfNotPresent
           ports:
             - containerPort: 8082
