@@ -1,0 +1,13 @@
+# TODO
+services:
+  nginx-likelion:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+  likelion-backend-1:
+    image: likelion-backend:latest
+
+  likelion-backend-2:
+      image: likelion-backend:latest
