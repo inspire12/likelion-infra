@@ -1,0 +1,6 @@
+# TODO
+services:
+  likelion-backend-1:
+    image: # TODO {}:latest
+    ports:
+      - # TODO "{} :8082"

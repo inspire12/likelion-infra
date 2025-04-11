@@ -1,7 +1,8 @@
 services:
   mysql:
     image: mysql:8.0
-#    restart: always
+    restart: no
+    #    restart: always
     volumes:
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
       - ./sql:/docker-entrypoint-initdb.d
@@ -14,6 +15,7 @@ services:
       - MYSQL_PASSWORD=likelion
   adminer:
     image: adminer
-    restart: always
+    restart: no
+    #    restart: always
     ports:
       - "3080:8080"
