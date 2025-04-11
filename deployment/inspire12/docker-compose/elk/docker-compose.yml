@@ -35,9 +35,8 @@ services:
       - elk-network
     command: >
       logstash -e '
-      input { tcp { port => 5000 codec => json } }
-      output { elasticsearch { hosts => ["elasticsearch:9200"] index => "logstash-%{+YYYY.MM.dd}" } }'
-
+            input { tcp { port => 5000 codec => json } }
+            output { elasticsearch { hosts => ["elasticsearch:9200"] index => "logstash-%{+YYYY.MM.dd}" } }'
   kibana:
     image: kibana:${ELK_VERSION}
     container_name: kibana
