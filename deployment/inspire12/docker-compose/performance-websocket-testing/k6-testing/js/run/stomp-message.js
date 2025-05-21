@@ -41,8 +41,7 @@ function createStompSendFrame(destination, body) {
     `content-length:${body.length}`,
     '',
     body,
-    ''
-  ].join('\n\n') + String.fromCharCode(0);
+  ].join('\n') + String.fromCharCode(0);
   console.log(a)
   return a;
 }
